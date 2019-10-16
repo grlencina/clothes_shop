@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+gauchada.resolver = req.body.resolver;<  
+development:
+  <<: *default
+  database: templ_job_board_development
+  
+test:
+  <<: *default
+  database: templ_job_board_test
+
+production:
+  <<: *default
+  database: templ_job_board_production
