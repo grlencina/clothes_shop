@@ -2,13 +2,15 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: glencina
-  password: glencina
   
 development:
   <<: *default
   database: clothes_shop_development
-  
+  host: db 
+  port: 5432
+  username: glencina
+  password: glencina
+
 test:
   <<: *default
   database: clothes_shop_test
@@ -16,3 +18,5 @@ test:
 production:
   <<: *default
   database: clothes_shop_production
+  username: clothes_shop
+  password: <%= ENV['RAILS_DATABASE_PASSWORD'] %>
