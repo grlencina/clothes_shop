@@ -25,5 +25,10 @@
   <%= @item.images %>
 </p>
 
+<p>
+  <strong>Category:</strong>
+  <%= Category.find(@item.category_id).name %>
+</p>
+
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>
