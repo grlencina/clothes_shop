@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 	has_many :transactions
+	has_many :assignments
+	has_many :roles, through: :assignments
 
   def role?(role)  
 	roles.any? { |r| r.name.underscore.to_sym == role }  
