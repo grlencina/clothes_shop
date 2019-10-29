@@ -1,0 +1,28 @@
+<%= form_with(model: @order) do |form| %>
+  
+  <%= form.hidden_field :item_id, :value => @item.id %>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @item.name %>
+  </p>
+
+  <p>
+  <strong>Description:</strong>
+    <%= @item.description %>
+  </p>
+
+  <p>
+  <strong>Price:</strong>
+    <%= @item.price %>
+  </p>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

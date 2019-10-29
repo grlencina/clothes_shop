@@ -1,4 +1,4 @@
 class Order < ApplicationRecord
 	belongs_to :item
-	belongs_to :transaction
+	belongs_to :purchase
 end
