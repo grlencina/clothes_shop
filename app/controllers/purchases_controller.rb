@@ -1,20 +1,20 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_purchase, only: [:add_to_cart]
-  before_action :set_item, only: [:add]
+  before_action :set_purchase, only: [:add_to_cart, :show]
 
   def add_to_cart
-  	if (@purchase.orders.where(item_id: order_params[:item_id]).count > 0 )
-		  
+  	if (@purchase.orders.where(item_id: order_params[:item_id]).count > 0)
+		  #update
     else
       @order = Order.create(item_id: order_params[:item_id], quantity: order_params[:quantity], purchase_id: @purchase.id,
-        totalPrice: order_params[:quantity] * Item.find(order_params[:item_id]).price)
-
+        totalPrice: (order_params[:quantity] * (Item.find(order_params[:item_id]).price)))
+      if(@purchase.order_id.any?)
+        @purchase.order_id << @order.id
+      else
+        @purchase.order_id[0]= @order.id
+      end
+      @purchase.save
     end
-  end
-
-  def add
-    @order = Order.new()
   end
 
   def index

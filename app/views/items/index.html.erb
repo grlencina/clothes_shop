@@ -26,7 +26,7 @@
         <td><%= Category.find(item.category_id).name %></td>
         <td><%= link_to 'Show', item %></td>
         <% if user_signed_in? %>
-          <td><%= link_to 'Add to cart', purchases_add_path(item.id) %></td>
+          <td><%= link_to 'Add to cart', orders_add_path(item) %></td>
           <% if current_user.role? :admin %>
             <td><%= link_to 'Edit', edit_item_path(item) %></td>
             <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
