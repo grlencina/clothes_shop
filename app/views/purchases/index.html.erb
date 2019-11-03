@@ -6,6 +6,9 @@
   <thead>
     <tr>
       <th>Purchase Id</th>
+      <% if current_user.role? :admin %>
+        <th> User </th>
+      <% end %>  
       <th>Status</th>
       <th> Last update </th>
       <th>Total price</th>
@@ -17,13 +20,19 @@
     <% @purchases.each do |purchase| %>
       <tr>
         <td><%= purchase.id %></td>
+        <% if current_user.role? :admin %>
+          <td><%= purchase.user.email %></td>
+        <% end %>
         <td><%= purchase.status %></td>
         <td><%= purchase.updated_at %></td>
         <td><%= purchase.orders.inject(0){|sum,x| sum + x.totalPrice }%></td>
-        <td><%= link_to 'Show', purchase_path(purchase)%></td>
+        <td><%= link_to 'Show', purchase_path(purchase) %></td>
+        <% if current_user.role? :admin %>
+          <td><%= link_to 'Delete', purchase_delete_path(purchase) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
+<%= link_to 'Back', items_path %>

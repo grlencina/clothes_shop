@@ -1,0 +1,51 @@
+<%= form_with(model: @purchase, locals: true) do |form| %>
+
+	<p id="notice"><%= notice %></p>
+
+	<p>
+	  <strong>ID:</strong>
+	  <%= @purchase.id %>
+	</p>
+
+	<p>
+	  <strong>Status:</strong>
+	  <%= @purchase.status %>
+	</p>
+
+	<p>
+	  <strong>Last update:</strong>
+	  <%= @purchase.updated_at %>
+	</p>
+
+		<table>
+		  <thead>
+		    <tr>
+		      <th>Item name</th>
+		      <th>Quantity</th>
+		      <th>Price</th>
+		      <th colspan="3"></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @purchase.orders.each do |order| %>
+		      <tr>
+		        <td><%= order.item.name %></td>
+		        <td>
+		        	<div class="field">
+			      		<%= form.number_field :quantity, multiple: true, value: order.quantity %>
+			    	</div>	
+			    </td>
+		        <td><%= order.totalPrice %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+
+	<div class="actions">
+		<%= form.submit %>
+	</div>
+
+	<br>
+
+	<%= link_to 'Back', purchase_path(@purchase) %>
+<% end %>
