@@ -38,12 +38,12 @@
 
 <br>
 <% if current_user == @purchase.user and @purchase.status == 'open' %>
-  <%= link_to 'Submit purchase', purchase_submit_path(@purchase) %>
-
-  <%= link_to 'Edit purchase', purchase_edit_path(@purchase) %>
+  <%= link_to 'Edit purchase', edit_purchase_path(@purchase) %>
+  <%= link_to 'Submit purchase', submit_purchase_path(@purchase) %>
+  <%= link_to 'Cancel purchase', cancel_purchase_path(@purchase) %>
 <% end %>
 <% if current_user.role? :admin and @purchase.status == 'pending'%>
-  <%= link_to 'Approve purchase', purchase_close_path(@purchase) %>
-  <%= link_to 'Cancel purchase', purchase_cancel_path(@purchase) %>
+  <%= link_to 'Approve purchase', close_purchase_path(@purchase) %>
+  <%= link_to 'Reject purchase', reject_purchase_path(@purchase) %>
 <% end %>
-<%= link_to 'Back', purchases_index_path %>
+<%= link_to 'Back', purchases_path %>

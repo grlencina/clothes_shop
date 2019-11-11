@@ -1,4 +1,4 @@
-<%= form_with(model: @order) do |form| %>
+<%= form_with(url: '/purchases', local:true) do |form| %>
   
   <%= form.hidden_field :item_id, :value => @item.id %>
 

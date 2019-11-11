@@ -28,7 +28,7 @@
         <td><%= purchase.orders.inject(0){|sum,x| sum + x.totalPrice }%></td>
         <td><%= link_to 'Show', purchase_path(purchase) %></td>
         <% if current_user.role? :admin %>
-          <td><%= link_to 'Delete', purchase_delete_path(purchase) %></td>
+          <td><%= link_to 'Delete', purchase_path(purchase), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>
